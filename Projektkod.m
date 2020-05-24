@@ -21,9 +21,9 @@ M=[58.12*10^-3;
 options = optimset('Display', 'off');
 e=0;
 Wtot=1950;      %[kg] mass cat
-XA_start=0;     %Oms‰ttning
+XA_start=0;     %Oms√§ttning
 T0=950;     %[K]
-FA0=78;    %[mol/s] inflˆden
+FA0=78;    %[mol/s] infl√∂den
 FB0=29.10;
 FH0=11.66;
 FW0=10*FA0;
@@ -36,32 +36,32 @@ XA=Y(:,1); T=Y(:,2);
 
 figure(1)
 plot(W,XA)
-xlabel('M‰ngd katalys(kg)','Fontsize',15)
+xlabel('M√§ngd katalys(kg)','Fontsize',15)
 ylabel('XA','Fontsize',15)
-title('Oms‰ttning mot m‰ngd katalys, reaktor 1','Fontsize',15)
+title('Oms√§ttning mot m√§ngd katalys, reaktor 1','Fontsize',15)
 legend('XA')
 
 figure(2)
 plot(T,XA)
 xlabel('Temp(K)','Fontsize',15)
 ylabel('XA','Fontsize',15)
-title('Oms‰ttning mot temperaturfall, reaktor 1','Fontsize',15)
+title('Oms√§ttning mot temperaturfall, reaktor 1','Fontsize',15)
 legend('Adiabat linje ')
 
 %kostnad
 Volym=Wtot/rhobed;          %[m3]
-D=(2*Volym/pi)^(1/3);       %[m] diameter av reaktork‰rl
-L=2*D;      %[m] l‰ngd av reaktork‰rl
+D=(2*Volym/pi)^(1/3);       %[m] diameter av reaktork√§rl
+L=2*D;      %[m] l√§ngd av reaktork√§rl
 
 Density=8000;       %[kg/m^3] from kurs PM at 900 F=755 K (would be better with 950 K, yes?)
-S_max=103.4*10^6;     %[N/m^2]maximalt tillÂtna materialsp‰nning 
-P=1.1*1*10^5;     %konstructionstrycket (10% stˆrre ‰n arbetstryck) (Pa)
+S_max=103.4*10^6;     %[N/m^2]maximalt till√•tna materialsp√§nning 
+P=1.1*1*10^5;     %konstructionstrycket (10% st√∂rre √§n arbetstryck) (Pa)
 t=(P*D)/(2*S_max*E-1.2*P);        %[m] Reactor wall thickness 
 V_inner=pi*(((D/2)-t)^2)*(L-2*t);     %[m^3] Volume of inner tank (air)
 Volume_container=Volym-V_inner;        %[m^3] Volume of shell
 Shell_mass_dist=Density*Volume_container;        %[kg] Mass of shell (S)
 
-a_h_304=12800;      %konstanter fˆr kostnadsber‰kning
+a_h_304=12800;      %konstanter f√∂r kostnadsber√§kning
 b_h_304=73;
 n_h_304=0.85;
 Cost_Year_B_h_304=a_h_304+b_h_304*Shell_mass_dist.^n_h_304; 
@@ -95,12 +95,12 @@ QW=F_mass_ugn_1(4)*CP_matrix_ugn_1(4,1)*(Tut-Tin);      %[J/s]
 Qtot=QBA+QBE+QH+QW;
          
 chi=0.8;        %Verkningsgrad
-Qheat=Qtot/chi;     %[J/s] Energi som kr‰vs fˆr uppv‰rmning 
-Driftko_ugn_2=Qheat/1000*8000*0.2; %[SEK] Driftskostnad fˆr 1 Âr, naturgas
+Qheat=Qtot/chi;     %[J/s] Energi som kr√§vs f√∂r uppv√§rmning 
+Driftko_ugn_2=Qheat/1000*8000*0.2; %[SEK] Driftskostnad f√∂r 1 √•r, naturgas
 
 %Cost Ugn: Cylindrical
 a=80000;
-b=109000;
+b=109000;   %Kostnadsparametrar
 n=0.8;
 S_ugn_1=Qheat/(10^6);       %[kW]
 Cost_Year_B=a+b*S_ugn_1.^n;
@@ -123,15 +123,15 @@ XA=Y(:,1); T=Y(:,2);
 
 figure(3)
 plot(W,XA)
-xlabel('M‰ngd katalys(kg)','Fontsize',15)
+xlabel('M√§ngd katalys(kg)','Fontsize',15)
 ylabel('XA','Fontsize',15)
-title('Oms‰ttning mot m‰ngd katalys, reaktor 2','Fontsize',15)
+title('Oms√§ttning mot m√§ngd katalys, reaktor 2','Fontsize',15)
 
 figure(4)
 plot(T,XA)
 xlabel('Temp(K)','Fontsize',15)
 ylabel('XA','Fontsize',15)
-title('Oms‰ttning mot temperaturfall, reaktor 2','Fontsize',15)
+title('Oms√§ttning mot temperaturfall, reaktor 2','Fontsize',15)
 legend('Adiabat linje ')
 rhobed=1120; %kg/m3
 Volym=Wtot/rhobed;
@@ -139,8 +139,8 @@ D=(2*Volym/pi)^(1/3);
 L=2*D;
 
 Density=8000;       %[kg/m^3] from kurs PM at 900 F=755 K (would be better with 950 K, yes?)
-S_max=103.4*10^6;     %[N/m^2]maximalt tillÂtna materialsp‰nning 
-P=1.1*1*10^5;     %konstructionstrycket (10% stˆrre ‰n arbetstryck) (Pa)
+S_max=103.4*10^6;     %[N/m^2]maximalt till√•tna materialsp√§nning 
+P=1.1*1*10^5;     %konstructionstrycket (10% st√∂rre √§n arbetstryck) (Pa)
 t=(P*D)/(2*S_max*E-1.2*P);        %[m] Reactor wall thickness 
 V_inner=pi*(((D/2)-t)^2)*(L-2*t);     %[m^3] Volume of inner tank (air)
 Volume_container=Volym-V_inner;        %[m^3] Volume of shell
@@ -163,7 +163,7 @@ fprintf('COOLER 1\n')
 fprintf('Inflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %3.0f mol/s water vapour\nat a temperature of %3.0f K \n',FA0*(1-XA(end)),FB0+FA0*XA(end),FH0+FA0*XA(end),FW0,T(end))
 %Data
 %Area calculations
-U_cooler_1=200;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_cooler_1=200;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_cooler_1=1;
 
 %Fetching and converting molar flow to mass flow
@@ -222,7 +222,7 @@ fprintf('CONDENSOR 1\n')
 fprintf('Inflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %3.0f mol/s water vapour\nat a temperature of %3.0f K \n',FA0*(1-XA(end)),FB0+FA0*XA(end),FH0+FA0*XA(end),FW0,T(end))
 %Data
 %Area calculations
-U_cooler_1=1000;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_cooler_1=1000;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_cooler_1=1;
 
 %Fetching and converting molar flow to mass flow
@@ -304,8 +304,8 @@ plot(x1, Tb)
 plot(y1, Tb)
 xlabel('x1,y1','Fontsize',15)
 ylabel('T [K]','Fontsize',15)
-title('J‰mviktsdiagram fˆr isobutan/vatten system','Fontsize',15)
-legend('M‰ttad v‰tska','M‰ttad Ânga')
+title('J√§mviktsdiagram f√∂r isobutan/vatten system','Fontsize',15)
+legend('M√§ttad v√§tska','M√§ttad √•nga')
 
 hold off
 
@@ -315,11 +315,11 @@ plot(x1,y1)
 plot(x1,x1,'red')
 xlabel('x','Fontsize',15)
 ylabel('y','Fontsize',15)
-title('≈ngfasssammans‰ttnig mot v‰tskefassammans‰ttning fˆr isobutan/vatten system','Fontsize',12)
-legend('J‰mviktssammans‰ttning','Diagonal')
+title('√Öngfasssammans√§ttnig mot v√§tskefassammans√§ttning f√∂r isobutan/vatten system','Fontsize',12)
+legend('J√§mviktssammans√§ttning','Diagonal')
 % Molar flows 
-F_cooler_1 = sum(F_mol_cooler_1); xF=(sum((F_mol_cooler_1(1:3))))/F_cooler_1; xD=0.99; xB=0.01; %K√§nt infl√∂de F o xF, √∂nskade sammans√§ttningar xD(toppen) och xB=azeotrop(botten)
-A=[1 1 F_cooler_1; xD xB xF*F_cooler_1]; Flows=rref(A); %r√§knar ut toppfl√∂de och bottenfl√∂de med total samt komponentbalans
+F_cooler_1 = sum(F_mol_cooler_1); xF=(sum((F_mol_cooler_1(1:3))))/F_cooler_1; xD=0.99; xB=0.01; %K√É¬§nt infl√É¬∂de F o xF, √É¬∂nskade sammans√É¬§ttningar xD(toppen) och xB=azeotrop(botten)
+A=[1 1 F_cooler_1; xD xB xF*F_cooler_1]; Flows=rref(A); %r√É¬§knar ut toppfl√É¬∂de och bottenfl√É¬∂de med total samt komponentbalans
 D=Flows(1,3); B=Flows(2,3);
 q_cooler_1 = 1; %previous cooler cooled the flow to a saturated liquid at current pressure and composition
 
@@ -379,7 +379,7 @@ Ttop = fsolve(@(T)find_Tbnonideal(T,xD,1-xD,1,1,A1,B1,C1,A2,B2,C2,P),Tstart, opt
 %Medeldensiteter
 
 MVrho=((ML/1000)*(P*133.322368))/(8.314*Tbb); %Kg/m^3
-MLrho=(x(1))*588+(1-x(1))*997; %kg/m¬≥
+MLrho=(x(1))*588+(1-x(1))*997; %kg/m√Ç¬≥
 
 FLV=(Lbar*ML)/(Vbar*MV)*sqrt(MVrho/MLrho);
 CF=0.29; %flooding constant from diagram
@@ -390,7 +390,7 @@ Uf=C*sqrt(((MLrho-MVrho)/MVrho));
 ada=0.1+(FLV-0.1)/9;
 DT=sqrt((4*V*(MV/1000))/(0.8*(Uf/3.28)*pi*(1-ada)*MVrho));
 
-% Totalkondensor och √•terkokare
+% Totalkondensor och √É¬•terkokare
 Hvap1=22.5*1000; %J/mol isobutene
 Hvap2=44200; %J/mol vatten vid 20 grader C, 42911 vid 50 grader
 Havgtop=xD*Hvap1+(1-xD)*Hvap2;
@@ -405,12 +405,12 @@ Qr=Vbar*Havgbot; %Joule/s
 % COST DESTILLATIOn
 %Pressure vesel
 
-Density=7900;       %[kg/m^3] kolstÂl from kurs PM 
+Density=7900;       %[kg/m^3] kolst√•l from kurs PM 
 
 Dim=DT;     %[m] diameter of container 
 L=H;        %[m] length of container 
-S_max=118*10^6;     %[N/m^2]maximalt tillÂtna materialsp‰nning 
-P=1.1*1*10^5;     %konstructionstrycket (10% stˆrre ‰n arbetstryck) (Pa)
+S_max=118*10^6;     %[N/m^2]maximalt till√•tna materialsp√§nning 
+P=1.1*1*10^5;     %konstructionstrycket (10% st√∂rre √§n arbetstryck) (Pa)
 
 t=(P*Dim)/(2*S_max*E-1.2*P);        %[m] Reactor wall thickness 
 
@@ -452,7 +452,7 @@ format shortG
 fprintf('REBOILER DEST 1\n')
 %Data
 %Area calculations
-U_reboiler_1=1000;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_reboiler_1=1000;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_reboiler_1=1;
 
 % Setting the desired out temperatures and the current in temperatures
@@ -487,7 +487,7 @@ format shortG
 fprintf('CONDENSOR DEST 1\n')
 %Data
 %Area calculations
-U_condensor_dest_1=1000;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_condensor_dest_1=1000;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_condensor_dest_1=1;
 
 % Setting the desired out temperatures and the current in temperatures
@@ -523,7 +523,7 @@ format shortG
 fprintf('REBOILER 1\n')
 %Data
 %Area calculations
-U_reboiler=1000;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_reboiler=1000;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_reboiler=1;
 
 % Setting the desired out temperatures and the current in temperatures
@@ -570,7 +570,7 @@ F_mol_compressor=[F_mol_cooler_1(1)/sum((F_mol_cooler_1(1:3)))*Flows(1,3)*xD;
 F_mass_compressor=[F_mas(F_mol_compressor(1,1),1);
         F_mas(F_mol_compressor(2,1),2);
         F_mas(F_mol_compressor(3,1),3);
-        F_mas(F_mol_compressor(4,1),4)];
+        F_mas(F_mol_compressor(4,1),4)]; %[kg/s]
 
 CP_matrix_cooler_1=[Cp_new(T_in,1,1,1,1,1);
            Cp_new(T_in,2,2,2,2,2);
@@ -579,11 +579,11 @@ CP_matrix_cooler_1=[Cp_new(T_in,1,1,1,1,1);
   
 % Calculations
 C_matrix=F_mass_compressor.*CP_matrix_cooler_1;      
-C_tot=sum(C_matrix);        %[W/K] Summan av m*cp fˆr alla komponenter i flˆdet
+C_tot=sum(C_matrix);        %[W/K] Summan av m*cp f√∂r alla komponenter i fl√∂det
 
-P_in=1*10^5;     %[Pa] IngÂende tryck till kompressorerna
+P_in=1*10^5;     %[Pa] Ing√•ende tryck till kompressorerna
 
-P_ut=50*10^5;     %[Pa] UtgÂende tryck
+P_ut=50*10^5;     %[Pa] Utg√•ende tryck
 eta_is=0.8;     %[] Isentropverkningsgrad
 R=8.314;        %[J/mol*K]
 
@@ -603,9 +603,9 @@ kappa_matrix=[CP_matrix_cooler_1(1,1)/Cv_matrix(1,1);
               CP_matrix_cooler_1(4,1)/Cv_matrix(4,1)];
           
 
-kappa=sum(kappa_matrix)./4;     %!!!Dividedby number of components
+kappa=sum(kappa_matrix)./4;     %Divided by number of components (average)
        
-%sfunction [Wtot,Qkyltot,Akyltot,Tut]=kompressor(C_tot,kappa,Pin,Tin,Put,eta_is)
+%ber√§kningsfunktionen
 %Pressure increase per step
 P_step = (P_ut/P_in)^(1/3);  %[]
 %Temperature out for each step in isentrope compression
@@ -634,10 +634,10 @@ A_kyl = Q_kyl/(Ukyl*deltaTlm); %[m2]
 A_kyl_tot = 2*A_kyl; %[m2] 
 
 % Utdata
-W_tot;        %[W] Totalt effektbehov fˆr kompressionen
+W_tot;        %[W] Totalt effektbehov f√∂r kompressionen
 Q_kyl;      %[W] Kylbehov i mellankylare
-A_kyl_tot;     %[m2] Total v‰rmev‰xlararea fˆr mellankylare
-T_ut;    %[K] UtgÂende temperatur
+A_kyl_tot;     %[m2] Total v√§rmev√§xlararea f√∂r mellankylare
+T_ut;    %[K] Utg√•ende temperatur
 % 3. COST: Compressor      (Centrifugal compressor)        %[kW]
 a=580000;
 b=20000;
@@ -665,7 +665,7 @@ fprintf('COOLER 2\n')
 fprintf('Inflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %0.2f mol/s water vapour\nat a temperature of %3.0f K \n',F_mol_compressor(1,1),F_mol_compressor(2,1),F_mol_compressor(3,1),F_mol_compressor(4,1),T_ut)
 %Data
 %Area calculations
-U_cooler_2=200;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_cooler_2=200;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_cooler_2=1;
 
 %Fetching and converting molar flow to mass flow
@@ -723,7 +723,7 @@ fprintf('CONDENSOR 2\n')
 fprintf('Inflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %0.2f mol/s water vapour\nat a temperature of %3.0f K \n',F_mol_compressor(1,1),F_mol_compressor(2,1),F_mol_compressor(3,1),F_mol_compressor(4,1),TH_ut_cooler_2)
 %Data
 %Area calculations
-U_cooler_1=850;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_cooler_1=850;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_cooler_1=1;
 
 %Molar flow
@@ -764,8 +764,8 @@ Drift_condensor_2=q_condensor/1000*8000*1;
 fprintf('Total area needed is %3.0f m2 and total cost is %7.0f SEK. Energy required is %4.0f kW and the operation cost per year is %8.0f \n', Area_cooler_1, Cost_Condensor_2, q_condensor/1000,Drift_condensor_2)
 fprintf('Outflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %0.2f mol/s water vapour\nat a temperature of %3.0f K \n \n \n',F_mol_compressor(1,1),F_mol_compressor(2,1),F_mol_compressor(3,1),F_mol_compressor(4,1),TH_ut_cooler_2)
 
-%% ≈terflˆde
-fprintf('≈TERFL÷DE\n')
+%% √Öterfl√∂de
+fprintf('√ÖTERFL√ñDE\n')
 fprintf('Inflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %0.2f mol/s water vapour at a temperature of %3.0f K \n',F_mol_compressor(1,1),F_mol_compressor(2,1),F_mol_compressor(3,1),F_mol_compressor(4,1),TH_ut_cooler_1)
 isobutan=F_mol_cooler_2(1)/(sum((F_mol_cooler_2(1:3))))*D*(xD)+0.26161; %adding the recirculated amount 
 isobuten=F_mol_cooler_2(2)/(sum((F_mol_cooler_2(1:3))))*D*(xD)+0.78615;
@@ -810,9 +810,9 @@ plot(y11,T,'red')
 axis([0 1 min(T) max(T)])
 xlabel('x','Fontsize',15)
 ylabel('T [K]','Fontsize',15)
-title('Temperatur mot sammans‰ttning fˆr isobutan/H_{2} system','Fontsize',15)
+title('Temperatur mot sammans√§ttning f√∂r isobutan/H_{2} system','Fontsize',15)
 grid on
-legend('M‰ttad v‰tska', 'M‰ttad Ânga')
+legend('M√§ttad v√§tska', 'M√§ttad √•nga')
 
 T=253; %temperature at which the flash will operate
 fun=@(x1)(find_Tbflash(P,T,A1,A2,x1)-T);  %function to be solved
@@ -847,13 +847,13 @@ HL=(L*10*60)/((pi/4)*DT^2);
 H=HL+1.5*DT;
 
 %cost
-Density=7900;       %[kg/m^3] kolstÂl from kurs PM 
+Density=7900;       %[kg/m^3] kolst√•l from kurs PM 
 
 Dim=DT;     %[m] diameter of container (1-3.5)
 L=H;        %[m] length of container 
-S_max=88.9*10^6;     %[N/m^2]maximalt tillÂtna materialsp‰nning 
+S_max=88.9*10^6;     %[N/m^2]maximalt till√•tna materialsp√§nning 
 E=1;     %svets verkningsgrad (= 1)
-P=50*1*10^5;     %konstructionstrycket (10% stˆrre ‰n arbetstryck) (Pa)
+P=50*1*10^5;     %konstructionstrycket (10% st√∂rre √§n arbetstryck) (Pa)
 
 t=(P*Dim)/(2*S_max*E-1.2*P);        %[m] Reactor wall thickness 
 
@@ -876,7 +876,7 @@ fprintf('Dimensions: diameter is %1.2f m and height is %2.1f m. The cost of the 
 
 %% Strypventil
 Put=3.3*760; 
-Tut=T; %antar att temperaturen ej fˆr‰ndras i strypventilen dÂ vi rˆr oss inom underkyldv‰tska omrÂdet
+Tut=T; %antar att temperaturen ej f√∂r√§ndras i strypventilen d√• vi r√∂r oss inom underkyldv√§tska omr√•det
 
 %% Destillation 2 butan-buten
 %1 = buten, 2 = butan
@@ -928,8 +928,8 @@ plot(x1, Tb)
 plot(y1, Tb)
 xlabel('x1,y1','Fontsize',15)
 ylabel('T [K]','Fontsize',15)
-title('J‰mviktsdiagram fˆr isobutan/vatten system','Fontsize',15)
-legend('M‰ttad v‰tska','M‰ttad Ânga')
+title('J√§mviktsdiagram f√∂r isobutan/vatten system','Fontsize',15)
+legend('M√§ttad v√§tska','M√§ttad √•nga')
 hold off
 
 figure(10)
@@ -938,11 +938,11 @@ plot(x1,y1)
 plot(x1,x1,'red')
 xlabel('x','Fontsize',15)
 ylabel('y','Fontsize',15)
-title('≈ngfasssammans‰ttnig mot v‰tskefassammans‰ttning fˆr isobutan/vatten system','Fontsize',12)
-legend('J‰mviktssammans‰ttning','Diagonal')
+title('√Öngfasssammans√§ttnig mot v√§tskefassammans√§ttning f√∂r isobutan/vatten system','Fontsize',12)
+legend('J√§mviktssammans√§ttning','Diagonal')
 % Flows
-F = butanin+butenin+h2in+win; xF2=(butanin+h2in)/(butanin+butenin+h2in+win); xD2=0.55; xB2=0.06; %K‰nt inflˆde F o xF, ˆnskade sammans‰ttningar xD(toppen) och xB=azeotrop(botten)
-A=[1 1 F; xD2 xB2 xF2*F]; Flows=rref(A); %r‰knar ut toppflˆde och bottenflˆde med total samt komponentbalans
+F = butanin+butenin+h2in+win; xF2=(butanin+h2in)/(butanin+butenin+h2in+win); xD2=0.55; xB2=0.06; %K√§nt infl√∂de F o xF, √∂nskade sammans√§ttningar xD(toppen) och xB=azeotrop(botten)
+A=[1 1 F; xD2 xB2 xF2*F]; Flows=rref(A); %r√§knar ut toppfl√∂de och bottenfl√∂de med total samt komponentbalans
 D=Flows(1,3); B=Flows(2,3);
 
 
@@ -1020,7 +1020,7 @@ Uf=C*sqrt(((MLrho-MVrho)/MVrho));
 ada=0.1+(FLV-0.1)/9;
 DT=sqrt((4*V*(MV/1000))/(0.8*(Uf/3.28)*pi*(1-ada)*MVrho));
 
-% Totalkondensor och Âterkokare
+% Totalkondensor och √•terkokare
 Hvap1=21.5*1000; %J/mol isobutan
 Hvap2=22.5*1000; %J/mol isobutene
 Havgtop=xD2*Hvap1+(1-xD2)*Hvap2;
@@ -1039,8 +1039,8 @@ Density=7900;       %[kg/m^3] from kurs PM
 
 Dim=DT;     %[m] diameter of container (1-3.5)
 L=H;        %[m] length of container 
-S_max=88.9*10^6;     %[N/m^2]maximalt tillÂtna materialsp‰nning 
-P=1.1*1*10^5;     %konstructionstrycket (10% stˆrre ‰n arbetstryck) (Pa)
+S_max=88.9*10^6;     %[N/m^2]maximalt till√•tna materialsp√§nning 
+P=1.1*1*10^5;     %konstructionstrycket (10% st√∂rre √§n arbetstryck) (Pa)
 
 t=(P*Dim)/(2*S_max*E-1.2*P);        %[m] Reactor wall thickness 
 
@@ -1079,7 +1079,7 @@ format shortG
 fprintf('REBOILER DEST 2\n')
 %Data
 %Area calculations
-U_reboiler_2=1000;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_reboiler_2=1000;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_reboiler_2=1;
 
 % Setting the desired out temperatures and the current in temperatures
@@ -1114,7 +1114,7 @@ format shortG
 fprintf('CONDENSOR DEST 2\n')
 %Data
 %Area calculations
-U_condensor_dest_2=1000;       %[W/m2] KV‰rmegenomgÂngstal from kurs PM
+U_condensor_dest_2=1000;       %[W/m2] KV√§rmegenomg√•ngstal from kurs PM
 F_condensor_dest_2=1;
 
 % Setting the desired out temperatures and the current in temperatures
@@ -1148,23 +1148,23 @@ fprintf('Total area needed is %3.0f m2 and investment cost is %7.0f SEK and the 
 fprintf('STRYPNING\n')
 fprintf('Inflow: %1.2f mol/s isobutane, %1.2f mol/s isobutene, %1.2f mol/s H2, %0.2f mol/s water at a temperature of %3.3f K and pressure of %1.1f bar\n', butanin/(butanin+h2in)*D*xD, butenin/(butenin+win)*(1-xD)*D,h2in/(butanin+h2in)*(xD)*D,win/(butenin+win)*(1-xD)*D, Ttop,3.3)
 R=8.314;
-Tc=408.1; Pc=36.48; w=0.177;
-T1=Ttop;
-P1=Put;
+Tc=408.1; Pc=36.48; w=0.177; %kritiska parameterar
+T1=Ttop;   %temp in (K)
+P1=Put;    % tryck in (bar)
 Tr=T1/Tc;
 Pr=P1/Pc;
-T2=300;                         %gissning
+T2=300;     %gissning av ut temp
 Tmedel=(T1+T2)/2;
-cpBA=@(Tmedel)CP(1,1)+CP(1,2).*Tmedel+CP(1,3).*Tmedel.^2+CP(1,4).*Tmedel.^3;     cpBA=cpBA(Tmedel);
+cpBA=@(Tmedel)CP(1,1)+CP(1,2).*Tmedel+CP(1,3).*Tmedel.^2+CP(1,4).*Tmedel.^3;     cpBA=cpBA(Tmedel); %cp-ber√§kning
 B0=0.083-(0.422/(Tr^1.6));
 B1=0.139-(0.172/(Tr^4.2));
-H=R*Tc*Pr*(B0-(Tc*(0.422*1.6/(Tr^2.6)))+(w*(B1-(Tr*(0.172*4.2/(Tr^5.2))))))/1000000;
+H=R*Tc*Pr*(B0-(Tc*(0.422*1.6/(Tr^2.6)))+(w*(B1-(Tr*(0.172*4.2/(Tr^5.2))))))/1000000; %ber√§kning av entalpi innan strypning 
 T2=T1+(H/cpBA);
 fprintf('Outflow: %1.2f mol/s isobutane, %1.2f mol/s isobutene, %1.2f mol/s H2, %0.2f mol/s water at a temperature of %3.3f K and pressure of %1.0f bar\n\n\n', butanin/(butanin+h2in)*D*xD, butenin/(butenin+win)*(1-xD)*D,h2in/(butanin+h2in)*(xD)*D,win/(butenin+win)*(1-xD)*D, T2,1)
 
-%% Mix 1 deststrˆmmarna vid 1 bar
+%% Mix 1 deststr√∂mmarna vid 1 bar
 fprintf('Inflow: The bottom flow from dest 1 and the top flow from dest 2 are mixed.\n')
-m1=[(butanin/(butanin+h2in)*xD2*D); %butan                                   ‰ndra flˆdesmatris till l‰mplig
+m1=[(butanin/(butanin+h2in)*xD2*D); %butan                                   
          (butenin/(butenin+win)*(1-xD2)*D);  %buten
          (h2in/(butanin+h2in)*(xD2)*D); %H
          (win/(butenin+win)*(1-xD2)*D)];    %water
@@ -1175,16 +1175,16 @@ cpH=@(T)CP(3,1)+CP(3,2).*T+CP(3,3).*T.^2+CP(3,4).*T.^3;
 cpW=@(T)CP(4,1)+CP(4,2).*T+CP(4,3).*T.^2+CP(4,4).*T.^3;  
 
 y=@(T) m2(1,1)*cpA(T)*(Tbb-T)+m2(2,1)*cpB(T)*(Tbb-T)+m2(3,1)*cpH(T)*(Tbb-T)+m2(4,1)*cpW(T)*(Tbb-T)-m1(1,1)*cpA(T)*(T-Ttop)-m1(2,1)*cpB(T)*(T-Ttop)-m1(3,1)*cpH(T)*(T-Ttop)-m1(4,1)*cpW(T)*(T-Ttop);
-Tut=fsolve(y,(Ttop+Tbb)/2,options);
+Tut=fsolve(y,(Ttop+Tbb)/2,options); %uttempereratur f√∂r fl√∂det
 
 m=m1+m2;
 fprintf('Outflow: %2.2f mol/s isobutane, %2.2f mol/s isobutene, %2.2f mol/s H2, %4.0f mol/s water at a temperature of %3.0f K \n\n\n',m(1),m(2),m(3),m(4),Tut)
 
-%% Mix 2 f‰rskt mixas med deststrˆmmarna pÂv‰g in i startugnen
+%% Mix 2 f√§rskt mixas med deststr√∂mmarna p√•v√§g in i startugnen
 fprintf('Inflow: the flow from mix 1 is mixed with the fresh feed containing isobutane and water at 283 K.\n')
-m4=[(FA0-m(1,1));
+m4=[(FA0-m(1,1)); %f√§rskt infl√∂de med butan och vatten
     0;
-    0; %f‰rsk flˆde
+    0;
     FW0-m(4,1)];
 y=@(t) m(1,1).*cpA(t).*(Tut-t)+m(2,1).*cpB(t).*(Tut-t)+m(3,1).*cpH(t).*(Tut-t)+m(4,1).*cpW(t).*(Tut-t)-m4(1,1).*cpA(t).*(t-283)-m4(4,1).*cpW(t).*(t-283);      
 T_ut=fsolve(y,300,options);
@@ -1194,7 +1194,6 @@ fprintf('Outflow: %2.2f mol/s isobutane, %2.2f mol/s isobutene, %2.2f mol/s H2, 
 %% Ugn 0 
 Tin=T_ut; Tut=950; Tmedel=(Tin+Tut)/2;        %[K]
 
-  
 F_mass_ugn_1=[F_mas(m0(1),1);
               F_mas(m0(2),2);
               F_mas(m0(3),3);
@@ -1212,8 +1211,8 @@ QW=F_mass_ugn_1(4)*CP_matrix_ugn_1(4,1)*(Tut-Tin);      %[J/s]
 Qtot=QBA+QBE+QH+QW;
          
 chi=0.8;        %Verkningsgrad
-Qheat=Qtot/0.8;     %[J/s] Energi som kr‰vs fˆr uppv‰rmning 
-Driftko_ugn_1=Qheat/1000*8000*0.2; %[SEK] Driftskostnad fˆr 1 Âr, naturgas
+Qheat=Qtot/0.8;     %[J/s] Energi som kr√§vs f√∂r uppv√§rmning 
+Driftko_ugn_1=Qheat/1000*8000*0.2; %[SEK] Driftskostnad f√∂r 1 √•r, naturgas
 
 %Cost Ugn: Cylindrical
 
@@ -1226,7 +1225,7 @@ Cost_Year_A=Cost_Year_B*(CEPCI_Year_A/CEPCI_Year_B);
 Cost_ugn_1=Cost_Year_A*10;
 fprintf('OVEN 0 \n')
 fprintf('Inflow: %2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %3.0f mol/s water vapour at a temperature of %3.0f K \n',m0(1),m0(2),m0(3),m0(4),T_ut)
-fprintf('Effect needed is %4.0f kW and the cost per year is %8.0f SEK dÂ naturgas anv‰nds. Investeringskostnaden blir %7.0f SEK \n', Qheat/1000,Driftko_ugn_1,Cost_ugn_1)
+fprintf('Effect needed is %4.0f kW and the cost per year is %8.0f SEK d√• naturgas anv√§nds. Investeringskostnaden blir %7.0f SEK \n', Qheat/1000,Driftko_ugn_1,Cost_ugn_1)
 fprintf('Outflow:%2.2f mols/s isobutane, %0.2f mol/s isobutene, %0.2f mol/s hydrogen gas, %3.0f mol/s water vapour\nat a temperature of %3.0f K \n\n\n ',m0(1),m0(2),m0(3),m0(4),Tut)
 
 %% Total Cost
@@ -1243,35 +1242,35 @@ close all
 function dYdW=ode_func(W,Y,HR,P,CP,FA0,FB0,FW0,FH0)
 %function file containing differential equations
 
-XA=Y(1); T=Y(2); %plockar ut Xa och T frÂn inputmatris
+XA=Y(1); T=Y(2); %plockar ut Xa och T fr√•n inputmatris
 
 R=8.314; %J/K/mol
 K1=22.90; %bar^-1.5
 K2=7.56; %/bar
 Ea=141e3; %J/mol
 
-FA=(FA0)*(1-XA); FB=FB0+FA0*XA; FH=FH0+FA0*XA; FW=FW0; %r‰knar nya flˆden
-Ftot=FA+FB+FH+FW; %ber‰knar totala flˆdet
-PA=FA/Ftot*P; PB=FB/Ftot*P; PH=FH/Ftot*P; %ber‰knar partial trycken
+FA=(FA0)*(1-XA); FB=FB0+FA0*XA; FH=FH0+FA0*XA; FW=FW0; %r√§knar nya fl√∂den
+Ftot=FA+FB+FH+FW; %ber√§knar totala fl√∂det
+PA=FA/Ftot*P; PB=FB/Ftot*P; PH=FH/Ftot*P; %ber√§knar partial trycken
 
-%ber‰knar nya reaktionskonstanter
+%ber√§knar nya reaktionskonstanter
 k=0.0596*exp((Ea/R).*(1./(550+273)-1./T)); %mol/(kg cat)/s/bar
 Ke=2.1*10^7*exp(-122/(R*T)); %bar
 
-%definierar funktioner fˆr att ber‰kna v‰rmekapacitet med anv‰ndning av de
+%definierar funktioner f√∂r att ber√§kna v√§rmekapacitet med anv√§ndning av de
 %konstanter som matades in i matrisen CP
 cpA=@(T)CP(1,1)+CP(1,2).*T+CP(1,3).*T.^2+CP(1,4).*T.^3;
 cpB=@(T)CP(2,1)+CP(2,2).*T+CP(2,3).*T.^2+CP(2,4).*T.^3;
 cpH=@(T)CP(3,1)+CP(3,2).*T+CP(3,3).*T.^2+CP(3,4).*T.^3;
 cpW=@(T)CP(4,1)+CP(4,2).*T+CP(4,3).*T.^2+CP(4,4).*T.^3;
 
-%korrekterar reaktionsentalpin fˆr den rÂdande temperaturen
+%korrekterar reaktionsentalpin f√∂r den r√•dande temperaturen
 delHr=HR-integral(cpA,298,T)+integral(cpB,298,T)+integral(cpH,298,T);
 
-%ber‰knar ny reaktionshastighet
+%ber√§knar ny reaktionshastighet
 r=(k*(PA-(PB*PH)/Ke))/(1+K1*PB*PH^0.5+(K2*PH)^0.5);
 
-%samlar ekvationerna som ska lˆsas
+%samlar ekvationerna som ska l√∂sas
 dYdW=[r/FA0 %mole balance
     (r*(-delHr))/(FA*cpA(T)+FB*cpB(T)+FH*cpH(T)+FW*cpW(T))]; %heat balance
 end
