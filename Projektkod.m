@@ -1174,10 +1174,10 @@ cpB=@(T)CP(2,1)+CP(2,2).*T+CP(2,3).*T.^2+CP(2,4).*T.^3;
 cpH=@(T)CP(3,1)+CP(3,2).*T+CP(3,3).*T.^2+CP(3,4).*T.^3;
 cpW=@(T)CP(4,1)+CP(4,2).*T+CP(4,3).*T.^2+CP(4,4).*T.^3;  
 
-y=@(T) m2(1,1)*cpA(T)*(Tbb-T)+m2(2,1)*cpB(T)*(Tbb-T)+m2(3,1)*cpH(T)*(Tbb-T)+m2(4,1)*cpW(T)*(Tbb-T)-m1(1,1)*cpA(T)*(T-Ttop)-m1(2,1)*cpB(T)*(T-Ttop)-m1(3,1)*cpH(T)*(T-Ttop)-m1(4,1)*cpW(T)*(T-Ttop);
-Tut=fsolve(y,(Ttop+Tbb)/2,options); %uttempereratur för flödet
+y=@(T) m2(1,1)*cpA(T)*(Tbb-T)+m2(2,1)*cpB(T)*(Tbb-T)+m2(3,1)*cpH(T)*(Tbb-T)+m2(4,1)*cpW(T)*(Tbb-T)-m1(1,1)*cpA(T)*(T-Ttop)-m1(2,1)*cpB(T)*(T-Ttop)-m1(3,1)*cpH(T)*(T-Ttop)-m1(4,1)*cpW(T)*(T-Ttop); %värmeblans som funktion av den okända sluttemperaturen T
+Tut=fsolve(y,(Ttop+Tbb)/2,options); %uttempereratur för flödet genom att lösa värmebalns y för den okända ut temperaturen
 
-m=m1+m2;
+m=m1+m2; %de två strömmarna summeras ihop
 fprintf('Outflow: %2.2f mol/s isobutane, %2.2f mol/s isobutene, %2.2f mol/s H2, %4.0f mol/s water at a temperature of %3.0f K \n\n\n',m(1),m(2),m(3),m(4),Tut)
 
 %% Mix 2 färskt mixas med destströmmarna påväg in i startugnen
@@ -1186,10 +1186,10 @@ m4=[(FA0-m(1,1)); %färskt inflöde med butan och vatten
     0;
     0;
     FW0-m(4,1)];
-y=@(t) m(1,1).*cpA(t).*(Tut-t)+m(2,1).*cpB(t).*(Tut-t)+m(3,1).*cpH(t).*(Tut-t)+m(4,1).*cpW(t).*(Tut-t)-m4(1,1).*cpA(t).*(t-283)-m4(4,1).*cpW(t).*(t-283);      
-T_ut=fsolve(y,300,options);
-m0=m4+m;
-fprintf('Outflow: %2.2f mol/s isobutane, %2.2f mol/s isobutene, %2.2f mol/s H2, %4.0f mol/s water at a temperature of %3.0f K \n\n\n',m0(1),m0(2),m0(3),m0(4),T_ut)
+y=@(t) m(1,1).*cpA(t).*(Tut-t)+m(2,1).*cpB(t).*(Tut-t)+m(3,1).*cpH(t).*(Tut-t)+m(4,1).*cpW(t).*(Tut-t)-m4(1,1).*cpA(t).*(t-283)-m4(4,1).*cpW(t).*(t-283); %värmeblans som funktion av den okända sluttemperaturen T     
+T_ut=fsolve(y,300,options); %fsolve används för att lösa värmebalansen för den okända temperaturen T
+m0=m4+m; %de två flödena summeras ihop
+fprintf('Outflow: %2.2f mol/s isobutane, %2.2f mol/s isobutene, %2.2f mol/s H2, %4.0f mol/s water at a temperature of %3.0f K \n\n\n',m0(1),m0(2),m0(3),m0(4),T_ut) 
 
 %% Ugn 0 
 Tin=T_ut; Tut=950; Tmedel=(Tin+Tut)/2;        %[K]
